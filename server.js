@@ -70,7 +70,7 @@ app.post('/myo/:id/event', function(req, res) {
         break;
     case 'onArmRecognized':
         event = _.extend(event, {
-            arm: req.params.arm,
+            arm: req.body.arm,
             xDirection: req.body.xDirection
         });
         break;
@@ -115,6 +115,7 @@ app.post('/myo/:id/event', function(req, res) {
     default:
         console.log('Default case');
     }
+    console.log('%j', event);
     
     if (sockets[id]) {
         sockets[id].emit('myo.' + eventType, event);

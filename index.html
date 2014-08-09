@@ -2,20 +2,49 @@
 <script src="/socket.io/socket.io.js"></script>
 <script src="http://code.jquery.com/jquery-2.1.1.js"></script>
 <script>
+  var _id = '53e621c7af755b5a17000002';
   var socket;
   $(document).ready(function() {
       socket = io.connect('http://localhost:3000');
+      socket.emit('myo_listen', _id);
+
       socket.on('myo.onPair', function (data) {
-          console.log(data);
-          $('body').append('<p/>').prepend(JSON.stringify(data));
+          print(data);
       }); 
+      socket.on('myo.onConnect', function (data) {
+          print(data);
+      }); 
+      socket.on('myo.onDisconnect', function (data) {
+          print(data);
+      }); 
+      socket.on('myo.onArmRecognized', function (data) {
+          print(data);
+      }); 
+      socket.on('myo.onArmLost', function (data) {
+          print(data);
+      }); 
+      socket.on('myo.onPose', function (data) {
+          print(data);
+      });
       socket.on('myo.onOrientationData', function (data) {
-          console.log(data);
+//          print(data);
+      }); 
+      socket.on('myo.onAccelerometerData', function (data) {
+//          print(data);
+      }); 
+      socket.on('myo.onGyroscopeData', function (data) {
+//          print(data);
+      }); 
+      socket.on('myo.onRssi', function (data) {
+          print(data);
+      }); 
+
+      function print(data) {
           var div = $('<div class="row"><div class="col-md-2" style="font-weight: bold;"></div><div class="col-md-10"></div><hr></div>');
           $('.container').prepend(div);
           div.find('.col-md-2').append(data.eventType);
           div.find('.col-md-10').append(JSON.stringify(data));
-      }); 
+      }
   });
 </script>
 <body>
