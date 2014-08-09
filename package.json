@@ -1,0 +1,13 @@
+{
+  "name": "myo_server",
+  "description": "Node.JS Server for Myo",
+  "version": "0.0.1",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "~1.0.1",
+    "express": "~4.0.0",
+    "lodash": "^2.4.1",
+    "mongoose": "~3.6.13",
+    "socket.io": "^1.0.6"
+  }
+}
